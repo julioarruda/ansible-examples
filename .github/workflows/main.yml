@@ -15,13 +15,13 @@ jobs:
 
     - name: Update Config File
       run: |
-        sed -i "s|GFT_LICENCE|$GFT_LICENCE|g" config.yaml
-        sed -i "s|AZ_OPENAI_ENDPOINT|$AZ_OPENAI_ENDPOINT|g" config.yaml
-        sed -i "s|AZ_OPENAI_TOKEN|$AZ_OPENAI_TOKEN|g" config.yaml
-        sed -i "s|AZ_OPENAI_ENGINE|$AZ_OPENAI_ENGINE|g" config.yaml
-        sed -i "s|GITHUB_TOKEN|$GH_TOKEN|g" config.yaml
+        sed -i "s|GFT_LICENCE|${{ secrets.GFT_LICENCE }} |g" config.yaml
+        sed -i "s|AZ_OPENAI_ENDPOINT|${{ secrets.AZ_OPENAI_ENDPOINT }}|g" config.yaml
+        sed -i "s|AZ_OPENAI_TOKEN|${{ secrets.AZ_OPENAI_TOKEN }}|g" config.yaml
+        sed -i "s|AZ_OPENAI_ENGINE|${{ secrets.AZ_OPENAI_ENGINE }}|g" config.yaml
+        sed -i "s|GITHUB_TOKEN|${{ secrets.GH_TOKEN }}|g" config.yaml
         sed -i "s|GITHUB_REPOSITORY|$GITHUB_REPOSITORY|g" config.yaml
-        sed -i "s|GITHUB_BASE_REF|$GH_BASE_BRANCH|g" config.yaml
+        sed -i "s|GITHUB_BASE_REF|${{ secrets.GH_BASE_BRANCH }}|g" config.yaml
 
         cat config.yaml
 
