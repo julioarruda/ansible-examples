@@ -15,7 +15,7 @@ jobs:
 
     - name: Update Config File
       run: |
-        sed -i "s|GFT_LICENCE|${{ secrets.GFT_LICENCE }} |g" config.yaml
+        sed -i "s|GFT_LICENCE|${{ secrets.GFT_LICENCE }}|g" config.yaml
         sed -i "s|AZ_OPENAI_ENDPOINT|${{ secrets.AZ_OPENAI_ENDPOINT }}|g" config.yaml
         sed -i "s|AZ_OPENAI_TOKEN|${{ secrets.AZ_OPENAI_TOKEN }}|g" config.yaml
         sed -i "s|AZ_OPENAI_ENGINE|${{ secrets.AZ_OPENAI_ENGINE }}|g" config.yaml
