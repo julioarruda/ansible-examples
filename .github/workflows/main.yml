@@ -28,7 +28,7 @@ jobs:
 
     - name: Install GFT CLI
       run: |
-        dotnet tool install gftcli --version 1.0.10 --tool-path ./tools
+        dotnet tool install gftcli --version 1.0.9 --tool-path ./tools
 
     - name: Run GFT Code Review
       run: |
