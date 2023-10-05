@@ -1,6 +1,9 @@
-name: Ansible Lint
+name: PR Review
 
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -8,19 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Important: This sets up your GITHUB_WORKSPACE environment variable
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Lint Ansible Playbook
-      # replace "master" with any valid ref
-      uses: ansible/ansible-lint-action@master
-      with:
-        # [required]
-        # Paths to ansible files (i.e., playbooks, tasks, handlers etc..)
-        # or valid Ansible directories according to the Ansible role
-        # directory structure.
-        # If you want to lint multiple ansible files, use the following syntax
-        # targets: |
-        #   playbook_1.yml
-        #   playbook_2.yml
-        targets: wordpress-nginx/site.yml
+    - name: Update Config File
+      run: |
+        sed -i "s|GFT_LICENCE|$GFT_LICENCE|g" config.yaml
+        sed -i "s|AZ_OPENAI_ENDPOINT|$AZ_OPENAI_ENDPOINT|g" config.yaml
+        sed -i "s|AZ_OPENAI_TOKEN|$AZ_OPENAI_TOKEN|g" config.yaml
+        sed -i "s|AZ_OPENAI_ENGINE|$AZ_OPENAI_ENGINE|g" config.yaml
+        sed -i "s|GITHUB_TOKEN|$GH_TOKEN|g" config.yaml
+        sed -i "s|GITHUB_REPOSITORY|$GITHUB_REPOSITORY|g" config.yaml
+        sed -i "s|GITHUB_BASE_REF|$GH_BASE_BRANCH|g" config.yaml
+
+    - name: Install GFT CLI
+      run: |
+        dotnet tool install gftcli --version 1.0.10 --tool-path ./tools
+
+    - name: Run GFT Code Review
+      run: |
+        ./tools/gft codereview --config_path config.yaml --pullnumer ${{ github.event.pull_request.number }}

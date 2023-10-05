@@ -1,0 +1,27 @@
+aimpact_licence: "GFT_LICENCE"
+language: pt-br
+isAzureOpenAI: true
+AzOpenAI:
+  endpoint: "AZ_OPENAI_ENDPOINT"
+  token: "AZ_OPENAI_TOKEN"
+  engine: "AZ_OPENAI_ENGINE"
+isFortify: false
+Fortify:
+  url: ""
+  token: ""
+  applicationId: ""
+isBitBucket: false
+BitBucket:
+  token: ""
+  repository: ""
+  basebranch: ""
+isGitHub: true
+GitHub:
+  token: "GITHUB_TOKEN"
+  repository: "GITHUB_REPOSITORY"
+  basebranch: "GITHUB_BASE_REF"
+isSonarCloud: false
+SonarCloud:
+  url: ""
+  token: ""
+  componentKey: ""
