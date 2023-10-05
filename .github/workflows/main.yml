@@ -23,6 +23,9 @@ jobs:
         sed -i "s|GITHUB_REPOSITORY|$GITHUB_REPOSITORY|g" config.yaml
         sed -i "s|GITHUB_BASE_REF|$GH_BASE_BRANCH|g" config.yaml
 
+        cat config.yaml
+
+
     - name: Install GFT CLI
       run: |
         dotnet tool install gftcli --version 1.0.10 --tool-path ./tools
